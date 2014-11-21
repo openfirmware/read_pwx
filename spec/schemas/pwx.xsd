@@ -9,6 +9,8 @@
 				<xsd:element name="workout" minOccurs="0" maxOccurs="unbounded">
 					<xsd:complexType>
 						<xsd:sequence>
+							<!-- fingerprint is added to the base schema -->
+							<xsd:element name="fingerprint" type="xsd:string" minOccurs="0"/>
 							<xsd:element name="athlete" type="athlete" minOccurs="0"/>
 							<xsd:element name="goal" type="xsd:string" minOccurs="0"/>
 							<xsd:element name="sportType" type="sportTypes" minOccurs="0"/>
