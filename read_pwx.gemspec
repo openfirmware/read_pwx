@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = ReadPWX::VERSION
   spec.authors       = ["James Badger"]
   spec.email         = ["james@jamesbadger.ca"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Read PWX files}
+  spec.description   = %q{Read PWX files for conversion to other data structures.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
