@@ -91,6 +91,30 @@ RSpec.describe ReadPWX::Parser do
           expect(device.stop_detection_setting).to eq "5.000"
         end
       end
+
+      it "creates a summary data instance" do
+        expect(workout.summary_data).to be_kind_of(ReadPWX::PWX::SummaryData)
+      end
+
+      describe "the summary data instance" do
+        let(:summary_data) { workout.summary_data }
+
+        it "has the correct beginning" do
+          expect(summary_data.beginning).to eq "0.000"
+        end
+
+        it "has the correct duration" do
+          expect(summary_data.duration).to eq "253.200"
+        end
+
+        it "has the correct duration stopped" do
+          expect(summary_data.duration_stopped).to eq "0.000"
+        end
+
+        it "has the correct dist" do
+          expect(summary_data.dist).to eq "982.00"
+        end
+      end
     end
   end
 end
