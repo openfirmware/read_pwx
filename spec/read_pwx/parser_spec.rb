@@ -67,6 +67,30 @@ RSpec.describe ReadPWX::Parser do
           expect(athlete.weight).to eq "68.0"
         end
       end
+
+      it "creates a device instance" do
+        expect(workout.device).to be_kind_of(ReadPWX::PWX::Device)
+      end
+
+      describe "the device instance" do
+        let(:device) { workout.device }
+
+        it "has the correct id" do
+          expect(device.id).to eq "TESTUSER"
+        end
+
+        it "has the correct make" do
+          expect(device.make).to eq "Timex"
+        end
+
+        it "has the correct model" do
+          expect(device.model).to eq "Cycle Trainer"
+        end
+
+        it "has the correct stop detection setting" do
+          expect(device.stop_detection_setting).to eq "5.000"
+        end
+      end
     end
   end
 end

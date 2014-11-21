@@ -23,6 +23,13 @@ module ReadPWX
           name: athlete_name,
           weight: athlete_weight
         }),
+        device: PWX::Device.new({
+          elevation_change_setting: device_elevation_change_setting,
+          id: device_id,
+          make: device_make,
+          model: device_model,
+          stop_detection_setting: device_stop_detection_setting
+        }),
         fingerprint: fingerprint,
         sport_type: sport_type,
         time: time
@@ -35,6 +42,26 @@ module ReadPWX
 
     def athlete_weight
       @document.xpath('/xmlns:pwx/xmlns:workout/xmlns:athlete/xmlns:weight').text.strip
+    end
+
+    def device_elevation_change_setting
+      @document.xpath('/xmlns:pwx/xmlns:workout/xmlns:device/xmlns:elevationchangesetting').text.strip
+    end
+
+    def device_id
+      @document.xpath('/xmlns:pwx/xmlns:workout/xmlns:device').attribute('id').value
+    end
+
+    def device_make
+      @document.xpath('/xmlns:pwx/xmlns:workout/xmlns:device/xmlns:make').text.strip
+    end
+
+    def device_model
+      @document.xpath('/xmlns:pwx/xmlns:workout/xmlns:device/xmlns:model').text.strip
+    end
+
+    def device_stop_detection_setting
+      @document.xpath('/xmlns:pwx/xmlns:workout/xmlns:device/xmlns:stopdetectionsetting').text.strip
     end
 
     def fingerprint
