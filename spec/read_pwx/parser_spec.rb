@@ -10,28 +10,63 @@ RSpec.describe ReadPWX::Parser do
     }.to_not raise_error
   end
 
-  it "allows access to the XML document" do
-    parsed = ReadPWX::Parser.new(sample)
-    expect(parsed.document).to be_kind_of(Nokogiri::XML::Document)
-  end
+  describe "parsing" do
+    let(:parsed) { ReadPWX::Parser.new(sample) }
 
-  it "allows validation of itself" do
-    parsed = ReadPWX::Parser.new(sample)
-    expect(parsed).to respond_to(:valid?)
-  end
+    it "allows access to the XML document" do
+      expect(parsed.document).to be_kind_of(Nokogiri::XML::Document)
+    end
 
-  it "is valid" do
-    parsed = ReadPWX::Parser.new(sample)
-    expect(parsed.valid?).to be true
-  end
+    it "allows validation of itself" do
+      expect(parsed).to respond_to(:valid?)
+    end
 
-  it "allows inspection of validation errors" do
-    parsed = ReadPWX::Parser.new(sample)
-    expect(parsed).to respond_to(:validation_errors)
-  end
+    it "is valid" do
+      expect(parsed.valid?).to be true
+    end
 
-  it "has no validation errors" do
-    parsed = ReadPWX::Parser.new(sample)
-    expect(parsed.validation_errors).to be_empty
+    it "allows inspection of validation errors" do
+      expect(parsed).to respond_to(:validation_errors)
+    end
+
+    it "has no validation errors" do
+      expect(parsed.validation_errors).to be_empty
+    end
+
+    it "creates a workout instance" do
+      expect(parsed.workout).to be_kind_of(ReadPWX::PWX::Workout)
+    end
+
+    describe "the workout instance" do
+      let(:workout) { parsed.workout }
+
+      it "has the correct fingerprint" do
+        expect(workout.fingerprint).to eq "22d20f5cad9597a49c09974b998e483b392a382d5a42df18679e99da18d44e10"
+      end
+
+      it "has the correct sport type" do
+        expect(workout.sport_type).to eq "Bike"
+      end
+
+      it "has the correct time" do
+        expect(workout.time).to eq "2012-07-24T18:08:53"
+      end
+
+      it "creates an athlete instance" do
+        expect(workout.athlete).to be_kind_of(ReadPWX::PWX::Athlete)
+      end
+
+      describe "the athlete instance" do
+        let(:athlete) { workout.athlete }
+
+        it "has the correct name" do
+          expect(athlete.name).to eq "unknown"
+        end
+
+        it "has the correct weight" do
+          expect(athlete.weight).to eq "68.0"
+        end
+      end
+    end
   end
 end
