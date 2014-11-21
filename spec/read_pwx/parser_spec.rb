@@ -14,4 +14,24 @@ RSpec.describe ReadPWX::Parser do
     parsed = ReadPWX::Parser.new(sample)
     expect(parsed.document).to be_kind_of(Nokogiri::XML::Document)
   end
+
+  it "allows validation of itself" do
+    parsed = ReadPWX::Parser.new(sample)
+    expect(parsed).to respond_to(:valid?)
+  end
+
+  it "is valid" do
+    parsed = ReadPWX::Parser.new(sample)
+    expect(parsed.valid?).to be true
+  end
+
+  it "allows inspection of validation errors" do
+    parsed = ReadPWX::Parser.new(sample)
+    expect(parsed).to respond_to(:validation_errors)
+  end
+
+  it "has no validation errors" do
+    parsed = ReadPWX::Parser.new(sample)
+    expect(parsed.validation_errors).to be_empty
+  end
 end
