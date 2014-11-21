@@ -5,7 +5,7 @@ require 'read_pwx/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "read_pwx"
-  spec.version       = ReadPwx::VERSION
+  spec.version       = ReadPWX::VERSION
   spec.authors       = ["James Badger"]
   spec.email         = ["james@jamesbadger.ca"]
   spec.summary       = %q{TODO: Write a short summary. Required.}

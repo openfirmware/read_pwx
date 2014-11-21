@@ -1,5 +1,5 @@
+require "read_pwx/parser"
 require "read_pwx/version"
 
-module ReadPwx
-  # Your code goes here...
+module ReadPWX
 end
