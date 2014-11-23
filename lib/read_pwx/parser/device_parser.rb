@@ -7,6 +7,7 @@ module ReadPWX
       @document = node
       @device = PWX::Device.new({
         elevation_change_setting: elevation_change_setting,
+        extension: extension,
         id: id,
         make: make,
         model: model,
@@ -16,6 +17,10 @@ module ReadPWX
 
     def elevation_change_setting
       @document.xpath('xmlns:elevationchangesetting').text.strip
+    end
+
+    def extension
+      ExtensionParser.new(@document.xpath('xmlns:extension')).extension
     end
 
     def id

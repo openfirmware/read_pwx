@@ -36,6 +36,10 @@ RSpec.describe ReadPWX::DeviceParser do
       it "has the correct stop detection setting" do
         expect(device.stop_detection_setting).to eq "5.000"
       end
+
+      it "has an extension instance" do
+        expect(device.extension).to be_kind_of(ReadPWX::PWX::Extension)
+      end
     end
   end
 end

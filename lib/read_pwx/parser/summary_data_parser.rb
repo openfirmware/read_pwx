@@ -60,8 +60,7 @@ module ReadPWX
     end
 
     def extension
-      node = @document.xpath('xmlns:extension')
-      ExtensionParser.new(node).extension
+      ExtensionParser.new(@document.xpath('xmlns:extension')).extension
     end
 
     def hr
