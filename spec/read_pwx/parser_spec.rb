@@ -33,12 +33,16 @@ RSpec.describe ReadPWX::Parser do
       expect(parsed.validation_errors).to be_empty
     end
 
+    it "has an array of workout instances" do
+      expect(parsed.workouts).to be_kind_of(Array)
+    end
+
     it "creates a workout instance" do
-      expect(parsed.workout).to be_kind_of(ReadPWX::PWX::Workout)
+      expect(parsed.workouts.first).to be_kind_of(ReadPWX::PWX::Workout)
     end
 
     describe "the workout instance" do
-      let(:workout) { parsed.workout }
+      let(:workout) { parsed.workouts.first }
 
       it "has the correct fingerprint" do
         expect(workout.fingerprint).to eq "22d20f5cad9597a49c09974b998e483b392a382d5a42df18679e99da18d44e10"
