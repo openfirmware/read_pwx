@@ -63,6 +63,10 @@ RSpec.describe ReadPWX::Parser do
       it "has the correct time" do
         expect(workout.time).to eq "2012-07-24T18:08:53"
       end
+
+      it "has an array of segment instances" do
+        expect(workout.segments).to be_kind_of(Array)
+      end
     end
   end
 end
