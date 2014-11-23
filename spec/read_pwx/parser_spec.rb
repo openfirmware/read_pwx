@@ -64,30 +64,6 @@ RSpec.describe ReadPWX::Parser do
         expect(workout.time).to eq "2012-07-24T18:08:53"
       end
 
-      it "creates a device instance" do
-        expect(workout.device).to be_kind_of(ReadPWX::PWX::Device)
-      end
-
-      describe "the device instance" do
-        let(:device) { workout.device }
-
-        it "has the correct id" do
-          expect(device.id).to eq "TESTUSER"
-        end
-
-        it "has the correct make" do
-          expect(device.make).to eq "Timex"
-        end
-
-        it "has the correct model" do
-          expect(device.model).to eq "Cycle Trainer"
-        end
-
-        it "has the correct stop detection setting" do
-          expect(device.stop_detection_setting).to eq "5.000"
-        end
-      end
-
       it "creates a summary data instance" do
         expect(workout.summary_data).to be_kind_of(ReadPWX::PWX::SummaryData)
       end
