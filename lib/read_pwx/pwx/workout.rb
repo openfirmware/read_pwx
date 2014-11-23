@@ -1,13 +1,14 @@
 module ReadPWX::PWX
   class Workout
-    attr_reader :athlete, :cmt, :code, :device, :fingerprint, :segments,
-                :sport_type, :time, :title, :summary_data
+    attr_reader :athlete, :cmt, :code, :device, :extension, :fingerprint,
+                :segments, :sport_type, :time, :title, :summary_data
 
     def initialize(options = {})
       @athlete = options[:athlete]
       @cmt = options[:cmt]
       @code = options[:code]
       @device = options[:device]
+      @extension = options[:extension]
       @fingerprint = options[:fingerprint]
       @segments = options[:segments]
       @sport_type = options[:sport_type]

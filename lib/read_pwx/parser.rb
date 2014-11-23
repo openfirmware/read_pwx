@@ -23,6 +23,7 @@ module ReadPWX
         cmt: cmt,
         code: code,
         device: device,
+        extension: extension,
         fingerprint: fingerprint,
         segments: segments,
         sport_type: sport_type,
@@ -40,6 +41,11 @@ module ReadPWX
     def device
       node = @document.xpath('/xmlns:pwx/xmlns:workout/xmlns:device')
       DeviceParser.new(node).device
+    end
+
+    def extension
+      node = @document.xpath('/xmlns:pwx/xmlns:workout/xmlns:extension')
+      ExtensionParser.new(node).extension
     end
 
     def segments
