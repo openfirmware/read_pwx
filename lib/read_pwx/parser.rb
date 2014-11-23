@@ -23,6 +23,8 @@ module ReadPWX
           name: athlete_name,
           weight: athlete_weight
         }),
+        cmt: cmt,
+        code: code,
         device: PWX::Device.new({
           elevation_change_setting: device_elevation_change_setting,
           id: device_id,
@@ -51,7 +53,8 @@ module ReadPWX
           variability_index: summary_variability_index,
           work: summary_work
         }),
-        time: time
+        time: time,
+        title: title
       })
     end
 
@@ -61,6 +64,14 @@ module ReadPWX
 
     def athlete_weight
       @document.xpath('/xmlns:pwx/xmlns:workout/xmlns:athlete/xmlns:weight').text.strip
+    end
+
+    def cmt
+      @document.xpath('/xmlns:pwx/xmlns:workout/xmlns:cmt').text.strip
+    end
+
+    def code
+      @document.xpath('/xmlns:pwx/xmlns:workout/xmlns:code').text.strip
     end
 
     def device_elevation_change_setting
@@ -161,6 +172,10 @@ module ReadPWX
 
     def time
       @document.xpath('/xmlns:pwx/xmlns:workout/xmlns:time').text.strip
+    end
+
+    def title
+      @document.xpath('/xmlns:pwx/xmlns:workout/xmlns:title').text.strip
     end
   end
 end

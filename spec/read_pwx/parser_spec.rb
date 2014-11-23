@@ -48,6 +48,18 @@ RSpec.describe ReadPWX::Parser do
         expect(workout.sport_type).to eq "Bike"
       end
 
+      it "has the correct title" do
+        expect(workout.title).to eq ""
+      end
+
+      it "has the correct cmt" do
+        expect(workout.cmt).to eq "Timex Cycle Trainer"
+      end
+
+      it "has the correct code" do
+        expect(workout.code).to eq ""
+      end
+
       it "has the correct time" do
         expect(workout.time).to eq "2012-07-24T18:08:53"
       end
