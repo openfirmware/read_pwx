@@ -64,22 +64,6 @@ RSpec.describe ReadPWX::Parser do
         expect(workout.time).to eq "2012-07-24T18:08:53"
       end
 
-      it "creates an athlete instance" do
-        expect(workout.athlete).to be_kind_of(ReadPWX::PWX::Athlete)
-      end
-
-      describe "the athlete instance" do
-        let(:athlete) { workout.athlete }
-
-        it "has the correct name" do
-          expect(athlete.name).to eq "unknown"
-        end
-
-        it "has the correct weight" do
-          expect(athlete.weight).to eq "68.0"
-        end
-      end
-
       it "creates a device instance" do
         expect(workout.device).to be_kind_of(ReadPWX::PWX::Device)
       end

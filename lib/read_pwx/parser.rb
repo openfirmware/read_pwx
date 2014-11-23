@@ -19,10 +19,7 @@ module ReadPWX
 
     def workout
       PWX::Workout.new({
-        athlete: PWX::Athlete.new({
-          name: athlete_name,
-          weight: athlete_weight
-        }),
+        athlete: athlete,
         cmt: cmt,
         code: code,
         device: PWX::Device.new({
@@ -58,12 +55,9 @@ module ReadPWX
       })
     end
 
-    def athlete_name
-      @document.xpath('/xmlns:pwx/xmlns:workout/xmlns:athlete/xmlns:name').text.strip
-    end
-
-    def athlete_weight
-      @document.xpath('/xmlns:pwx/xmlns:workout/xmlns:athlete/xmlns:weight').text.strip
+    def athlete
+      node = @document.xpath('/xmlns:pwx/xmlns:workout/xmlns:athlete')
+      AthleteParser.new(node).athlete
     end
 
     def cmt
