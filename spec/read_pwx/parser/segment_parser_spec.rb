@@ -1,10 +1,10 @@
 require 'spec_helper'
 require 'read_pwx'
 
-RSpec.describe ReadPWX::AthleteParser do
-  let(:sample) { IO.read(File.join('spec', 'fixtures', 'test_ride.pwx')) }
+RSpec.describe ReadPWX::SegmentParser do
+  let(:file) { IO.read(File.join('spec', 'fixtures', 'test_ride.pwx')) }
   let(:node) {
-    Nokogiri::XML(sample).xpath('/xmlns:pwx/xmlns:workout/xmlns:segment').first
+    Nokogiri::XML(file).xpath('/xmlns:pwx/xmlns:workout/xmlns:segment').first
   }
 
   it "creates with an XML node" do

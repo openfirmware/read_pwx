@@ -12,6 +12,7 @@ module ReadPWX
         device: device,
         extension: extension,
         fingerprint: fingerprint,
+        samples: samples,
         segments: segments,
         sport_type: sport_type,
         summary_data: summary_data,
@@ -33,6 +34,13 @@ module ReadPWX
     def extension
       node = @document.xpath('xmlns:extension')
       ExtensionParser.new(node).extension
+    end
+
+    def samples
+      nodes = @document.xpath('xmlns:sample')
+      nodes.map do |node|
+        SampleParser.new(node).sample
+      end
     end
 
     def segments

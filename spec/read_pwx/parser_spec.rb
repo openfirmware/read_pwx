@@ -72,6 +72,10 @@ RSpec.describe ReadPWX::Parser do
         expect(workout.segments).to be_kind_of(Array)
       end
 
+      it "has an array of sample instances" do
+        expect(workout.samples).to be_kind_of(Array)
+      end
+
       it "has an athlete instance" do
         expect(workout.athlete).to be_kind_of(ReadPWX::PWX::Athlete)
       end

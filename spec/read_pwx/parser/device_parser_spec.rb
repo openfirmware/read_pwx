@@ -2,8 +2,8 @@ require 'spec_helper'
 require 'read_pwx'
 
 RSpec.describe ReadPWX::DeviceParser do
-  let(:sample) { IO.read(File.join('spec', 'fixtures', 'test_ride.pwx')) }
-  let(:node) { Nokogiri::XML(sample).xpath('/xmlns:pwx/xmlns:workout/xmlns:device') }
+  let(:file) { IO.read(File.join('spec', 'fixtures', 'test_ride.pwx')) }
+  let(:node) { Nokogiri::XML(file).xpath('/xmlns:pwx/xmlns:workout/xmlns:device') }
 
   it "creates with an XML node" do
     expect {
