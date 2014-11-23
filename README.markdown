@@ -11,6 +11,16 @@ Tests are written in RSpec. Running the tests is fairly straight-forward:
 
 Specs are tested with real data in the `spec/fixtures` directory.
 
+## Roadmap
+
+There are a few tentative features I would like to add to this gem to make it more useful (at least for me). I will attempt to follow semantic versioning.
+
+### Future Features
+
+* Support export of PWX data into Garmin Training Center files (TCX)
+* Support export of PWX data into GPS Exchange Format files (GPX)
+* Support export of PWX data into Flexible and Interoperable Data Transfer files (FIT)
+
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/read_pwx/fork )
