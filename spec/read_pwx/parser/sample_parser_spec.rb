@@ -42,6 +42,30 @@ RSpec.describe ReadPWX::SampleParser do
       it "creates an extension instance" do
         expect(sample.extension).to be_kind_of(ReadPWX::PWX::Extension)
       end
+
+      describe "the extension instance" do
+        let(:extension) { sample.extension }
+
+        it "has the correct hrmstatus" do
+          expect(extension["hrmstatus"]).to eq "0"
+        end
+
+        it "has the correct gpsstatus" do
+          expect(extension["gpsstatus"]).to eq "3"
+        end
+
+        it "has the correct spdstatus" do
+          expect(extension["spdstatus"]).to eq "0"
+        end
+
+        it "has the correct pmstatus" do
+          expect(extension["pmstatus"]).to eq "0"
+        end
+
+        it "has the correct cadstatus" do
+          expect(extension["cadstatus"]).to eq "0"
+        end
+      end
     end
   end
 end
