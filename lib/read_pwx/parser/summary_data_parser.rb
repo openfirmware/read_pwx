@@ -14,6 +14,7 @@ module ReadPWX
         dist: dist,
         duration: duration,
         duration_stopped: duration_stopped,
+        extension: extension,
         hr: hr,
         normalized_power: normalized_power,
         pwr: pwr,
@@ -56,6 +57,11 @@ module ReadPWX
 
     def duration_stopped
       @document.xpath('xmlns:durationstopped').text.strip
+    end
+
+    def extension
+      node = @document.xpath('xmlns:extension')
+      ExtensionParser.new(node).extension
     end
 
     def hr

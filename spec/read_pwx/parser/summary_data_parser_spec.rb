@@ -36,6 +36,10 @@ RSpec.describe ReadPWX::SummaryDataParser do
       it "has the correct dist" do
         expect(summary_data.dist).to eq "982.00"
       end
+
+      it "has an extension instance" do
+        expect(summary_data.extension).to be_kind_of(ReadPWX::PWX::Extension)
+      end
     end
   end
 end

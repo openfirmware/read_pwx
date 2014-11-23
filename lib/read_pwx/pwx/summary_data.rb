@@ -1,9 +1,9 @@
 module ReadPWX::PWX
   class SummaryData
     attr_reader :alt, :beginning, :cad, :climbing_elevation,
-                :descending_elevation, :dist, :duration, :duration_stopped, :hr,
-                :normalized_power, :pwr, :spd, :temp, :torq, :tss,
-                :variability_index, :work
+                :descending_elevation, :dist, :duration, :duration_stopped,
+                :extension, :hr, :normalized_power, :pwr, :spd, :temp, :torq,
+                :tss, :variability_index, :work
 
     def initialize(options = {})
       @alt = options[:alt]
@@ -14,6 +14,7 @@ module ReadPWX::PWX
       @dist = options[:dist]
       @duration = options[:duration]
       @duration_stopped = options[:duration_stopped]
+      @extension = options[:extension]
       @hr = options[:hr]
       @normalized_power = options[:normalized_power]
       @pwr = options[:pwr]

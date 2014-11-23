@@ -10,10 +10,15 @@ module ReadPWX
 
     # Naive conversion of nodes to a hash
     def data
+      return {} if empty?
       @document.element_children.inject({}) do |memo, child|
         memo[child.name] = child.text.strip
         memo
       end
+    end
+
+    def empty?
+      @document.nil? ||  @document.element_children.nil?
     end
   end
 end
