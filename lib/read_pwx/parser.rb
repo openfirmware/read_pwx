@@ -17,6 +17,12 @@ module ReadPWX
       @schema.validate(@document)
     end
 
+    def pwx
+      PWX::PWX.new(workouts: workouts)
+    end
+
+    private
+
     def workouts
       @document.xpath('/xmlns:pwx/xmlns:workout').map do |node|
         WorkoutParser.new(node).workout
