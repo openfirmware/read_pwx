@@ -28,9 +28,7 @@ module ReadPWX::Serializers
                         xml['gpx'].time (DateTime.strptime(workout.time, "%Y-%m-%dT%H:%I:%S") + sample.time_offset.to_i).iso8601
 
                         xml['gpx'].extensions {
-                          if !sample.cad.empty?
-                            xml.cadence sample.cad
-                          end
+                          xml.cadence sample.cad unless sample.cad.empty?
                         } # status of devices
                       }
                     end

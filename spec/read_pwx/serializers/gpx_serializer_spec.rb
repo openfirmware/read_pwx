@@ -42,5 +42,10 @@ RSpec.describe ReadPWX::Serializers::GPXSerializer do
       cadence = @gpx.at_xpath('//gpx:trkpt/gpx:extensions/xmlns:cadence').text.strip
       expect(cadence).to eq @pwx.workouts.first.samples.first.cad
     end
+
+    it "ignores the cadence element when it is not present" do
+      cadence = @gpx.xpath('//gpx:trkpt').last.at_xpath('gpx:extensions/xmlns:cadence')
+      expect(cadence).to eq nil
+    end
   end
 end
