@@ -1,10 +1,13 @@
 module ReadPWX
+  require 'time'
+
   # Parse Sample details from an XML node
   class SampleParser
     attr_reader :sample
 
-    def initialize(node)
+    def initialize(node, base_time)
       @document = node
+      @base_time = base_time
       @sample = PWX::Sample.new({
         alt: alt,
         cad: cad,
@@ -63,7 +66,13 @@ module ReadPWX
     end
 
     def time
-      @document.xpath('xmlns:time').text.strip
+      time_element = @document.xpath('xmlns:time').text.strip
+
+      if !time_element.empty?
+        time_element
+      else
+        (DateTime.iso8601(@base_time).to_time + time_offset.to_f).utc.iso8601
+      end
     end
 
     def time_offset

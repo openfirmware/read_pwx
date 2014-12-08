@@ -25,7 +25,7 @@ module ReadPWX::Serializers
                         xml['gpx'].ele sample.alt
 
                         # use time, or calculate from time_offset
-                        xml['gpx'].time (DateTime.strptime(workout.time, "%Y-%m-%dT%H:%I:%S") + sample.time_offset.to_i).iso8601
+                        xml['gpx'].time sample.time
 
                         xml['gpx'].extensions {
                           xml.cadence sample.cad unless sample.cad.empty?

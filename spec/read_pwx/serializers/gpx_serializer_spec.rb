@@ -87,5 +87,10 @@ RSpec.describe ReadPWX::Serializers::GPXSerializer do
       power = @gpx.xpath('//gpx:trkpt').last.at_xpath('gpx:extensions/xmlns:power')
       expect(power).to eq nil
     end
+
+    it "has the ISO8601 date/time as a trkpt element" do
+      datetime = @gpx.at_xpath('//gpx:trkpt/gpx:time').text.strip
+      expect(datetime).to eq @pwx.workouts.first.samples.first.time
+    end
   end
 end

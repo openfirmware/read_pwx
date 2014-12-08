@@ -39,7 +39,7 @@ module ReadPWX
     def samples
       nodes = @document.xpath('xmlns:sample')
       nodes.map do |node|
-        SampleParser.new(node).sample
+        SampleParser.new(node, time).sample
       end
     end
 
