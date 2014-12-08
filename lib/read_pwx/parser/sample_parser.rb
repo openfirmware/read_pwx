@@ -71,7 +71,7 @@ module ReadPWX
       if !time_element.empty?
         time_element
       else
-        (DateTime.iso8601(@base_time).to_time + time_offset.to_f).utc.iso8601
+        (DateTime.iso8601(@base_time).to_time + time_offset.to_f).utc.strftime("%FT%T.%L")
       end
     end
 

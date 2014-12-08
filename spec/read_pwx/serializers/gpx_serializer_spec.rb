@@ -39,57 +39,57 @@ RSpec.describe ReadPWX::Serializers::GPXSerializer do
     end
 
     it "has the cadence data as a trkpt extension" do
-      cadence = @gpx.at_xpath('//gpx:trkpt/gpx:extensions/xmlns:cadence').text.strip
+      cadence = @gpx.at_xpath('//xmlns:trkpt/xmlns:extensions/gpxdata:cadence').text.strip
       expect(cadence).to eq @pwx.workouts.first.samples.first.cad
     end
 
     it "ignores the cadence element when it is not present" do
-      cadence = @gpx.xpath('//gpx:trkpt').last.at_xpath('gpx:extensions/xmlns:cadence')
+      cadence = @gpx.xpath('//xmlns:trkpt').last.at_xpath('xmlns:extensions/gpxdata:cadence')
       expect(cadence).to eq nil
     end
 
     it "has the distance data as a trkpt extension" do
-      distance = @gpx.at_xpath('//gpx:trkpt/gpx:extensions/xmlns:distance').text.strip
+      distance = @gpx.at_xpath('//xmlns:trkpt/xmlns:extensions/gpxdata:distance').text.strip
       expect(distance).to eq @pwx.workouts.first.samples.first.dist
     end
 
     it "ignores the distance element when it is not present" do
-      distance = @gpx.xpath('//gpx:trkpt').last.at_xpath('gpx:extensions/xmlns:distance')
+      distance = @gpx.xpath('//xmlns:trkpt').last.at_xpath('xmlns:extensions/gpxdata:distance')
       expect(distance).to eq nil
     end
 
     it "has the heart rate data as a trkpt extension" do
-      hr = @gpx.at_xpath('//gpx:trkpt/gpx:extensions/xmlns:hr').text.strip
+      hr = @gpx.at_xpath('//xmlns:trkpt/xmlns:extensions/gpxdata:hr').text.strip
       expect(hr).to eq @pwx.workouts.first.samples.first.hr
     end
 
     it "ignores the heart rate element when it is not present" do
-      hr = @gpx.xpath('//gpx:trkpt').last.at_xpath('gpx:extensions/xmlns:hr')
+      hr = @gpx.xpath('//xmlns:trkpt').last.at_xpath('xmlns:extensions/gpxdata:hr')
       expect(hr).to eq nil
     end
 
     it "has the temperature data as a trkpt extension" do
-      temp = @gpx.at_xpath('//gpx:trkpt/gpx:extensions/xmlns:temp').text.strip
+      temp = @gpx.at_xpath('//xmlns:trkpt/xmlns:extensions/gpxdata:temp').text.strip
       expect(temp).to eq @pwx.workouts.first.samples.first.temp
     end
 
     it "ignores the temperature element when it is not present" do
-      temp = @gpx.xpath('//gpx:trkpt').last.at_xpath('gpx:extensions/xmlns:temp')
+      temp = @gpx.xpath('//xmlns:trkpt').last.at_xpath('xmlns:extensions/gpxdata:temp')
       expect(temp).to eq nil
     end
 
     it "has the power data as a trkpt extension" do
-      power = @gpx.at_xpath('//gpx:trkpt/gpx:extensions/xmlns:power').text.strip
+      power = @gpx.at_xpath('//xmlns:trkpt/xmlns:extensions/gpxdata:power').text.strip
       expect(power).to eq @pwx.workouts.first.samples.first.pwr
     end
 
     it "ignores the power element when it is not present" do
-      power = @gpx.xpath('//gpx:trkpt').last.at_xpath('gpx:extensions/xmlns:power')
+      power = @gpx.xpath('//xmlns:trkpt').last.at_xpath('xmlns:extensions/gpxdata:power')
       expect(power).to eq nil
     end
 
     it "has the ISO8601 date/time as a trkpt element" do
-      datetime = @gpx.at_xpath('//gpx:trkpt/gpx:time').text.strip
+      datetime = @gpx.at_xpath('//xmlns:trkpt/xmlns:time').text.strip
       expect(datetime).to eq @pwx.workouts.first.samples.first.time
     end
   end

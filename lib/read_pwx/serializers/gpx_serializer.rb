@@ -2,47 +2,38 @@ module ReadPWX::Serializers
   class GPXSerializer
     class << self
       def dump(pwx)
-        builder = Nokogiri::XML::Builder.new do |xml|
-          xml['gpx'].gpx(gpx_attributes) {
-            xml['gpx'].metadata {
-              xml['gpx'].time Time.now.utc.iso8601
-              xml['gpx'].extensions {}
+        builder = Nokogiri::XML::Builder.new(encoding: "UTF-8") do |xml|
+          xml.gpx(gpx_attributes) {
+            xml.metadata {
+              xml.time Time.now.utc.iso8601
             }
 
             pwx.workouts.each_with_index do |workout, index|
-              xml['gpx'].trk { # corresponds to workout
-                xml['gpx'].name workout.fingerprint
-                xml['gpx'].src "#{workout.device.make} #{workout.device.model}"
-                xml['gpx'].number index
-                xml['gpx'].extensions {}
+              xml.trk { # corresponds to workout
+                xml.name workout.fingerprint
+                xml.src "#{workout.device.make} #{workout.device.model}"
+                xml.number index
 
-                xml['gpx'].trkseg {
+                xml.trkseg {
                   workout.samples.each do |sample|
                     if !sample.lat.empty? && !sample.lon.empty?
-                      xml['gpx'].trkpt(lat: sample.lat, lon: sample.lon) {
-                        # look into extensions to GPX for HRM, Cadence, etc.
+                      xml.trkpt(lat: sample.lat, lon: sample.lon) {
+                        xml.ele sample.alt
+                        xml.time sample.time
 
-                        xml['gpx'].ele sample.alt
-
-                        # use time, or calculate from time_offset
-                        xml['gpx'].time sample.time
-
-                        xml['gpx'].extensions {
-                          xml.cadence sample.cad unless sample.cad.empty?
-                          xml.distance sample.dist unless sample.dist.empty?
-                          xml.hr sample.hr unless sample.hr.empty?
-                          xml.power sample.pwr unless sample.pwr.empty?
-                          xml.temp sample.temp unless sample.temp.empty?
-                        } # status of devices
+                        xml.extensions {
+                          xml['gpxdata'].cadence sample.cad unless sample.cad.empty?
+                          xml['gpxdata'].distance sample.dist unless sample.dist.empty?
+                          xml['gpxdata'].hr sample.hr unless sample.hr.empty?
+                          xml['gpxdata'].power sample.pwr unless sample.pwr.empty?
+                          xml['gpxdata'].temp sample.temp unless sample.temp.empty?
+                        }
                       }
                     end
                   end
-                  xml['gpx'].extensions {} # extensions to segment
                 }
               }
             end
-
-            xml['gpx'].extensions {}
           }
         end
 
@@ -53,8 +44,8 @@ module ReadPWX::Serializers
 
       def gpx_attributes
         {
-          "xmlns" => "http://www.cluetrust.com/XML/GPXDATA/1/0",
-          "xmlns:gpx" => "http://www.topografix.com/GPX/1/1",
+          "xmlns" => "http://www.topografix.com/GPX/1/1",
+          "xmlns:gpxdata" => "http://www.cluetrust.com/XML/GPXDATA/1/0",
           "xmlns:xsd" => "http://www.w3.org/2001/XMLSchema",
           "creator" => "ReadPWX " + ReadPWX::VERSION,
           "version" => "1.1"
