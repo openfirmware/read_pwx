@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+$:.push('lib')
+require 'read_pwx'
+
+while !ARGV.empty? do
+  pwx = ReadPWX::Parser.new(ARGF.file).pwx
+  puts ReadPWX::Serializers::GPXSerializer.dump(pwx).to_xml
+  ARGF.close
+end
