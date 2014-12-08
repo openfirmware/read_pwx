@@ -31,6 +31,7 @@ module ReadPWX::Serializers
                           xml.cadence sample.cad unless sample.cad.empty?
                           xml.distance sample.dist unless sample.dist.empty?
                           xml.hr sample.hr unless sample.hr.empty?
+                          xml.temp sample.temp unless sample.temp.empty?
                         } # status of devices
                       }
                     end

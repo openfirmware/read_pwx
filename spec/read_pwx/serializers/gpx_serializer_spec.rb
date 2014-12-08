@@ -67,5 +67,15 @@ RSpec.describe ReadPWX::Serializers::GPXSerializer do
       hr = @gpx.xpath('//gpx:trkpt').last.at_xpath('gpx:extensions/xmlns:hr')
       expect(hr).to eq nil
     end
+
+    it "has the temperature data as a trkpt extension" do
+      temp = @gpx.at_xpath('//gpx:trkpt/gpx:extensions/xmlns:temp').text.strip
+      expect(temp).to eq @pwx.workouts.first.samples.first.temp
+    end
+
+    it "ignores the temperature element when it is not present" do
+      temp = @gpx.xpath('//gpx:trkpt').last.at_xpath('gpx:extensions/xmlns:temp')
+      expect(temp).to eq nil
+    end
   end
 end

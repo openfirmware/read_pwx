@@ -39,6 +39,7 @@
       <cad>60</cad>
       <dist>0</dist>
       <hr>120</hr>
+      <temp>20</temp>
       <extension>
         <hrmstatus>3</hrmstatus>
         <gpsstatus>3</gpsstatus>
@@ -55,6 +56,7 @@
       <cad>60</cad>
       <dist>2</dist>
       <hr>120</hr>
+      <temp>20</temp>
       <extension>
         <hrmstatus>3</hrmstatus>
         <gpsstatus>3</gpsstatus>
@@ -71,6 +73,7 @@
       <cad>60</cad>
       <dist>4</dist>
       <hr>120</hr>
+      <temp>20</temp>
       <extension>
         <hrmstatus>3</hrmstatus>
         <gpsstatus>3</gpsstatus>
