@@ -3,7 +3,7 @@ require 'read_pwx'
 
 RSpec.describe ReadPWX::Serializers::GPXSerializer do
   before do
-    file = IO.read(File.join('spec', 'fixtures', 'test_ride.pwx'))
+    file = IO.read(File.join('spec', 'fixtures', 'mod_ride.pwx'))
     @pwx = ReadPWX::Parser.new(file).pwx
   end
 
@@ -36,6 +36,11 @@ RSpec.describe ReadPWX::Serializers::GPXSerializer do
     it "has no GPXData schema errors" do
       schema = Nokogiri::XML::Schema(IO.read(File.join('spec', 'schemas', 'gpxdata10.xsd')))
       expect(schema.validate(@gpx)).to be_empty
+    end
+
+    it "has the cadence data as a trkpt extension" do
+      cadence = @gpx.at_xpath('//gpx:trkpt/gpx:extensions/xmlns:cadence').text.strip
+      expect(cadence).to eq @pwx.workouts.first.samples.first.cad
     end
   end
 end
