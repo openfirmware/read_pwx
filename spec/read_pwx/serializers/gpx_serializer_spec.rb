@@ -77,5 +77,15 @@ RSpec.describe ReadPWX::Serializers::GPXSerializer do
       temp = @gpx.xpath('//gpx:trkpt').last.at_xpath('gpx:extensions/xmlns:temp')
       expect(temp).to eq nil
     end
+
+    it "has the power data as a trkpt extension" do
+      power = @gpx.at_xpath('//gpx:trkpt/gpx:extensions/xmlns:power').text.strip
+      expect(power).to eq @pwx.workouts.first.samples.first.pwr
+    end
+
+    it "ignores the power element when it is not present" do
+      power = @gpx.xpath('//gpx:trkpt').last.at_xpath('gpx:extensions/xmlns:power')
+      expect(power).to eq nil
+    end
   end
 end

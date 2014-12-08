@@ -39,6 +39,7 @@
       <cad>60</cad>
       <dist>0</dist>
       <hr>120</hr>
+      <pwr>150</pwr>
       <temp>20</temp>
       <extension>
         <hrmstatus>3</hrmstatus>
@@ -56,6 +57,7 @@
       <cad>60</cad>
       <dist>2</dist>
       <hr>120</hr>
+      <pwr>150</pwr>
       <temp>20</temp>
       <extension>
         <hrmstatus>3</hrmstatus>
@@ -73,6 +75,7 @@
       <cad>60</cad>
       <dist>4</dist>
       <hr>120</hr>
+      <pwr>150</pwr>
       <temp>20</temp>
       <extension>
         <hrmstatus>3</hrmstatus>
