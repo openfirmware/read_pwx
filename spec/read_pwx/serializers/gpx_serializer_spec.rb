@@ -47,5 +47,15 @@ RSpec.describe ReadPWX::Serializers::GPXSerializer do
       cadence = @gpx.xpath('//gpx:trkpt').last.at_xpath('gpx:extensions/xmlns:cadence')
       expect(cadence).to eq nil
     end
+
+    it "has the distance data as a trkpt extension" do
+      distance = @gpx.at_xpath('//gpx:trkpt/gpx:extensions/xmlns:distance').text.strip
+      expect(distance).to eq @pwx.workouts.first.samples.first.dist
+    end
+
+    it "ignores the distance element when it is not present" do
+      distance = @gpx.xpath('//gpx:trkpt').last.at_xpath('gpx:extensions/xmlns:distance')
+      expect(distance).to eq nil
+    end
   end
 end

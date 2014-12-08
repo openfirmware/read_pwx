@@ -29,6 +29,7 @@ module ReadPWX::Serializers
 
                         xml['gpx'].extensions {
                           xml.cadence sample.cad unless sample.cad.empty?
+                          xml.distance sample.dist unless sample.dist.empty?
                         } # status of devices
                       }
                     end

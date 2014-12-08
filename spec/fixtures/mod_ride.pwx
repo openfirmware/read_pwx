@@ -37,6 +37,7 @@
       <lon>-114.133881</lon>
       <alt>1101.00</alt>
       <cad>60</cad>
+      <dist>0</dist>
       <extension>
         <hrmstatus>0</hrmstatus>
         <gpsstatus>3</gpsstatus>
@@ -51,6 +52,7 @@
       <lon>-114.133881</lon>
       <alt>1101.00</alt>
       <cad>60</cad>
+      <dist>2</dist>
       <extension>
         <hrmstatus>0</hrmstatus>
         <gpsstatus>3</gpsstatus>
@@ -65,6 +67,7 @@
       <lon>-114.133881</lon>
       <alt>1099.00</alt>
       <cad>60</cad>
+      <dist>4</dist>
       <extension>
         <hrmstatus>0</hrmstatus>
         <gpsstatus>3</gpsstatus>
