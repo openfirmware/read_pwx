@@ -27,5 +27,15 @@ RSpec.describe ReadPWX::Serializers::GPXSerializer do
       schema = Nokogiri::XML::Schema(IO.read(File.join('spec', 'schemas', 'gpx.xsd')))
       expect(schema.validate(@gpx)).to be_empty
     end
+
+    it "validates against GPXData schema" do
+      schema = Nokogiri::XML::Schema(IO.read(File.join('spec', 'schemas', 'gpxdata10.xsd')))
+      expect(schema.valid?(@gpx)).to be true
+    end
+
+    it "has no GPXData schema errors" do
+      schema = Nokogiri::XML::Schema(IO.read(File.join('spec', 'schemas', 'gpxdata10.xsd')))
+      expect(schema.validate(@gpx)).to be_empty
+    end
   end
 end
