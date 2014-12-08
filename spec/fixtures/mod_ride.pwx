@@ -38,8 +38,9 @@
       <alt>1101.00</alt>
       <cad>60</cad>
       <dist>0</dist>
+      <hr>120</hr>
       <extension>
-        <hrmstatus>0</hrmstatus>
+        <hrmstatus>3</hrmstatus>
         <gpsstatus>3</gpsstatus>
         <spdstatus>0</spdstatus>
         <pmstatus>0</pmstatus>
@@ -53,8 +54,9 @@
       <alt>1101.00</alt>
       <cad>60</cad>
       <dist>2</dist>
+      <hr>120</hr>
       <extension>
-        <hrmstatus>0</hrmstatus>
+        <hrmstatus>3</hrmstatus>
         <gpsstatus>3</gpsstatus>
         <spdstatus>0</spdstatus>
         <pmstatus>0</pmstatus>
@@ -68,8 +70,9 @@
       <alt>1099.00</alt>
       <cad>60</cad>
       <dist>4</dist>
+      <hr>120</hr>
       <extension>
-        <hrmstatus>0</hrmstatus>
+        <hrmstatus>3</hrmstatus>
         <gpsstatus>3</gpsstatus>
         <spdstatus>0</spdstatus>
         <pmstatus>0</pmstatus>

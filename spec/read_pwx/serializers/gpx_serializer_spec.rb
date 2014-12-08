@@ -57,5 +57,15 @@ RSpec.describe ReadPWX::Serializers::GPXSerializer do
       distance = @gpx.xpath('//gpx:trkpt').last.at_xpath('gpx:extensions/xmlns:distance')
       expect(distance).to eq nil
     end
+
+    it "has the heart rate data as a trkpt extension" do
+      hr = @gpx.at_xpath('//gpx:trkpt/gpx:extensions/xmlns:hr').text.strip
+      expect(hr).to eq @pwx.workouts.first.samples.first.hr
+    end
+
+    it "ignores the heart rate element when it is not present" do
+      hr = @gpx.xpath('//gpx:trkpt').last.at_xpath('gpx:extensions/xmlns:hr')
+      expect(hr).to eq nil
+    end
   end
 end
