@@ -24,6 +24,18 @@ If a sensor reading is not present for a sample then it is omitted (instead of a
 
 Support for converting additional data from PWX to GPX is planned, specifically summary data. I will need a sample PWX file with advanced summary data to be able to write this feature, and I do not have any at the moment.
 
+## Notes on PWX
+
+The PWX file from the Timex Cycle Trainer adds some extensions to each sample element.
+
+* hrmstatus
+* gpsstatus
+* spdstatus
+* pmstatus
+* cadstatus
+
+It is allowed in the PWX schema to add arbitrary extensions, but I cannot find a source for these extensions that explains the meaning of their values. If someone knows this information from the PWX schema please let me know.
+
 ## Tests
 
 Tests are written in RSpec. Running the tests is fairly straight-forward:
