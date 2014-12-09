@@ -52,7 +52,7 @@ module ReadPWX::Serializers
 
       def trk(xml, workout, index)
         xml.trk {
-          xml.name workout.fingerprint
+          xml.name trk_name(workout)
           xml.src "#{workout.device.make} #{workout.device.model}"
           xml.number index
           xml.type_ workout.sport_type
@@ -81,6 +81,12 @@ module ReadPWX::Serializers
             }
           }
         }
+      end
+
+      def trk_name(workout)
+        dist = workout.summary_data.dist
+        time = DateTime.iso8601(workout.time).to_time.getlocal.to_s
+        "#{workout.sport_type} on #{time} for #{dist}m"
       end
 
       def trkpt(xml, sample)
