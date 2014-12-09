@@ -20,6 +20,7 @@ module ReadPWX::Serializers
                 xml.name workout.fingerprint
                 xml.src "#{workout.device.make} #{workout.device.model}"
                 xml.number index
+                xml.type_ workout.sport_type
 
                 xml.trkseg {
                   workout.samples.each do |sample|
