@@ -112,5 +112,10 @@ RSpec.describe ReadPWX::Serializers::GPXSerializer do
       datetime = @gpx.at_xpath('//xmlns:trkpt/xmlns:time').text.strip
       expect(datetime).to eq @pwx.workouts.first.samples.first.time
     end
+
+    it "has the run info as a trk extension" do
+      run = @gpx.at_xpath('//xmlns:trk/xmlns:extensions/gpxdata:run')
+      expect(run).to_not eq nil
+    end
   end
 end

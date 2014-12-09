@@ -21,6 +21,20 @@ module ReadPWX::Serializers
                 xml.src "#{workout.device.make} #{workout.device.model}"
                 xml.number index
                 xml.type_ workout.sport_type
+                xml.extensions {
+                  xml['gpxdata'].run {
+                    xml['gpxdata'].sport gpx_sport_enum(workout.sport_type)
+                    xml['gpxdata'].laps {
+                      workout.segments.each_with_index do |segment, index|
+                        xml['gpxdata'].lap {
+                          xml['gpxdata'].index index
+                          xml['gpxdata'].elapsedTime segment.summary_data.duration
+                          xml['gpxdata'].distance segment.summary_data.dist
+                        }
+                      end
+                    }
+                  }
+                }
 
                 xml.trkseg {
                   workout.samples.each do |sample|
@@ -58,6 +72,14 @@ module ReadPWX::Serializers
           "creator" => "ReadPWX " + ReadPWX::VERSION,
           "version" => "1.1"
         }
+      end
+
+      def gpx_sport_enum(sport_type)
+        case sport_type
+          when "Bike" then 'bike'
+          when "Run" then 'run'
+          else 'other'
+        end
       end
     end
   end
