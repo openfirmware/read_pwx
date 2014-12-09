@@ -39,22 +39,22 @@ RSpec.describe ReadPWX::Serializers::GPXSerializer do
     end
 
     it "sets the metadata author name" do
-      name = @gpx.at_xpath('//xmlns:metadata/xmlns:author/xmlns:name').text.strip
+      name = @gpx.at_xpath('/xmlns:gpx/xmlns:metadata/xmlns:author/xmlns:name').text.strip
       expect(name).to eq "ReadPWX"
     end
 
     it "sets the metadata author link text" do
-      link = @gpx.at_xpath('//xmlns:metadata/xmlns:author/xmlns:link/xmlns:text').text.strip
+      link = @gpx.at_xpath('/xmlns:gpx/xmlns:metadata/xmlns:author/xmlns:link/xmlns:text').text.strip
       expect(link).to eq "Github: openfirmware/read_pwx"
     end
 
     it "sets the metadata author link href" do
-      link = @gpx.at_xpath('//xmlns:metadata/xmlns:author/xmlns:link')
+      link = @gpx.at_xpath('/xmlns:gpx/xmlns:metadata/xmlns:author/xmlns:link')
       expect(link.attributes['href'].value).to eq "https://github.com/openfirmware/read_pwx"
     end
 
     it "sets the metadata author link mimetype" do
-      link = @gpx.at_xpath('//xmlns:metadata/xmlns:author/xmlns:link/xmlns:type').text.strip
+      link = @gpx.at_xpath('/xmlns:gpx/xmlns:metadata/xmlns:author/xmlns:link/xmlns:type').text.strip
       expect(link).to eq "text/html"
     end
 
