@@ -7,7 +7,7 @@ def convert(input, format)
   if format == :gpx
     ReadPWX::Serializers::GPXSerializer.dump(input).to_xml
   else
-    puts "Unknown format!"
+    $stderr.puts "Unknown format!"
     exit(1)
   end
 end
