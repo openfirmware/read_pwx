@@ -1,5 +1,7 @@
 # read_pwx
 
+[![Build Status](https://travis-ci.org/openfirmware/read_pwx.svg?branch=master)](https://travis-ci.org/openfirmware/read_pwx)
+
 Reads PWX files from Training Peaks/Timex. To be used to convert to other formats.
 
 ## Exporting to GPX
