@@ -5,6 +5,9 @@ module ReadPWX::Serializers
         builder = Nokogiri::XML::Builder.new(encoding: "UTF-8") do |xml|
           xml.gpx(gpx_attributes) {
             xml.metadata {
+              xml.author {
+                xml.name "ReadPWX"
+              }
               xml.time Time.now.utc.iso8601
             }
 

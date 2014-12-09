@@ -38,6 +38,11 @@ RSpec.describe ReadPWX::Serializers::GPXSerializer do
       expect(schema.validate(@gpx)).to be_empty
     end
 
+    it "sets the metadata author name" do
+      name = @gpx.at_xpath('//xmlns:metadata/xmlns:author/xmlns:name').text.strip
+      expect(name).to eq "ReadPWX"
+    end
+
     it "has the cadence data as a trkpt extension" do
       cadence = @gpx.at_xpath('//xmlns:trkpt/xmlns:extensions/gpxdata:cadence').text.strip
       expect(cadence).to eq @pwx.workouts.first.samples.first.cad
