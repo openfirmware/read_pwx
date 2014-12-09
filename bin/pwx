@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby
+
+require 'read_pwx'
+require 'optparse'
+
+def convert(input, format)
+  if format == :gpx
+    ReadPWX::Serializers::GPXSerializer.dump(input).to_xml
+  else
+    $stderr.puts "Unknown format!"
+    exit(1)
+  end
+end
+
+options = {}
+optparse = OptionParser.new do |opts|
+  opts.banner =
+  ["Convert TrainingPeaks PWX files. Outputs to STDOUT.",
+   "Usage: pwx [options] <input.pwx>"].join("\n")
+  opts.separator ""
+  opts.separator "Specific Options:"
+
+  opts.on('--output=gpx', [:gpx], 'Output as GPX') do
+    options[:output] = :gpx
+  end
+end
+
+optparse.parse!
+
+if ARGV.empty?
+  puts optparse.help
+end
+
+while !ARGV.empty? do
+  pwx = ReadPWX::Parser.new(ARGF.file).pwx
+  puts convert(pwx, options[:output])
+  ARGF.close
+end

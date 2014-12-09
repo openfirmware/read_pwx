@@ -7,14 +7,14 @@ RSpec.describe ReadPWX::SampleParser do
     Nokogiri::XML(file).xpath('/xmlns:pwx/xmlns:workout/xmlns:sample').first
   }
 
-  it "creates with an XML node" do
+  it "creates with an XML node and starting time" do
     expect {
-      ReadPWX::SampleParser.new(node)
+      ReadPWX::SampleParser.new(node, "2012-07-24T18:08:53")
     }.to_not raise_error
   end
 
   describe "parsing" do
-    let(:parsed) { ReadPWX::SampleParser.new(node) }
+    let(:parsed) { ReadPWX::SampleParser.new(node, "2012-07-24T18:08:53") }
 
     it "creates a sample instance" do
       expect(parsed.sample).to be_kind_of(ReadPWX::PWX::Sample)
