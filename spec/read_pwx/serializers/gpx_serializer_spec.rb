@@ -43,6 +43,21 @@ RSpec.describe ReadPWX::Serializers::GPXSerializer do
       expect(name).to eq "ReadPWX"
     end
 
+    it "sets the metadata author link text" do
+      link = @gpx.at_xpath('//xmlns:metadata/xmlns:author/xmlns:link/xmlns:text').text.strip
+      expect(link).to eq "Github: openfirmware/read_pwx"
+    end
+
+    it "sets the metadata author link href" do
+      link = @gpx.at_xpath('//xmlns:metadata/xmlns:author/xmlns:link')
+      expect(link.attributes['href'].value).to eq "https://github.com/openfirmware/read_pwx"
+    end
+
+    it "sets the metadata author link mimetype" do
+      link = @gpx.at_xpath('//xmlns:metadata/xmlns:author/xmlns:link/xmlns:type').text.strip
+      expect(link).to eq "text/html"
+    end
+
     it "has the cadence data as a trkpt extension" do
       cadence = @gpx.at_xpath('//xmlns:trkpt/xmlns:extensions/gpxdata:cadence').text.strip
       expect(cadence).to eq @pwx.workouts.first.samples.first.cad

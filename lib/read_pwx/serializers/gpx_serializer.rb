@@ -7,6 +7,10 @@ module ReadPWX::Serializers
             xml.metadata {
               xml.author {
                 xml.name "ReadPWX"
+                xml.link(href: "https://github.com/openfirmware/read_pwx") {
+                  xml.text_ "Github: openfirmware/read_pwx"
+                  xml.type_ "text/html"
+                }
               }
               xml.time Time.now.utc.iso8601
             }
