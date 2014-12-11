@@ -16,6 +16,7 @@ The GPX format is based on the [schema defined by Topographix](http://www.topogr
 
 * Basic lap information (time, distance)
 * Sensor data for samples
+    * Altitude in metres
     * Cadence in RPM
     * Distance in metres
     * Heartrate in BPM
@@ -25,6 +26,23 @@ The GPX format is based on the [schema defined by Topographix](http://www.topogr
 If a sensor reading is not present for a sample then it is omitted (instead of an empty element or element with `null` value).
 
 Support for converting additional data from PWX to GPX is planned, specifically summary data. I will need a sample PWX file with advanced summary data to be able to write this feature, and I do not have any at the moment.
+
+## Exporting to TCX
+
+The `pwx` script can also be used to convert a PWX file to TCX.
+
+    $ pwx --output=tcx input.pwx > output.tcx
+
+The TCX format is based on the [schema defined by Garmin](http://www8.garmin.com/xmlschemas/TrainingCenterDatabasev2.xsd). The following attributes are converted from PWX to TCX:
+
+* Basic lap information (time, distance)
+* Sensor data for samples
+    * Altitude in metres
+    * Cadence in RPM
+    * Distance in metres
+    * Heartrate in BPM
+
+If a sensor reading is not present for a sample then it is omitted (instead of an empty element or element with `null` value).
 
 ## Notes on PWX
 
@@ -53,7 +71,6 @@ There are a few tentative features I would like to add to this gem to make it mo
 
 ### Future Features
 
-* Support export of PWX data into Garmin Training Center files (TCX)
 * Support export of PWX data into Flexible and Interoperable Data Transfer files (FIT)
 
 ## Contributing

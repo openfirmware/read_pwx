@@ -4,8 +4,11 @@ require 'read_pwx'
 require 'optparse'
 
 def convert(input, format)
-  if format == :gpx
+  case format
+  when :gpx
     ReadPWX::Serializers::GPXSerializer.dump(input).to_xml
+  when :tcx
+    ReadPWX::Serializers::TCXSerializer.dump(input).to_xml
   else
     $stderr.puts "Unknown format!"
     exit(1)
@@ -20,8 +23,8 @@ optparse = OptionParser.new do |opts|
   opts.separator ""
   opts.separator "Specific Options:"
 
-  opts.on('--output=gpx', [:gpx], 'Output as GPX') do
-    options[:output] = :gpx
+  opts.on('--output=[gpx|tcx]', [:gpx, :tcx], 'Output format') do |format|
+    options[:output] = format
   end
 end
 
