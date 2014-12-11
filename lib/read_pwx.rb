@@ -17,6 +17,7 @@ require 'read_pwx/pwx/segment'
 require 'read_pwx/pwx/summary_data'
 require 'read_pwx/pwx/workout'
 require 'read_pwx/serializers/gpx_serializer'
+require 'read_pwx/serializers/tcx_serializer'
 require 'read_pwx/version'
 
 module ReadPWX
