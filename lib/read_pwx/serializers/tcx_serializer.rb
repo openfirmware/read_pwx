@@ -29,8 +29,8 @@ module ReadPWX::Serializers
                             xml.LatitudeDegrees sample.lat.to_f
                             xml.LongitudeDegrees sample.lon.to_f
                           }
-                          xml.AltitudeMeters sample.alt.to_f
-                          xml.DistanceMeters sample.dist.to_f
+                          xml.AltitudeMeters sample.alt.to_f if !sample.alt.empty?
+                          xml.DistanceMeters sample.dist.to_f if !sample.dist.empty?
 
                           if !sample.hr.empty?
                             xml.HeartRateBpm {
